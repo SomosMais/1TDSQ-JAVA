@@ -3,10 +3,8 @@ package br.com.fiap.dao;
 import br.com.fiap.beans.Usuario;
 import br.com.fiap.conexao.ConnectionFactory;
 import br.com.fiap.excecoes.ExcecoesCadastro;
+import java.sql.*;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 public class UsuarioDAO {
 
@@ -32,8 +30,38 @@ public class UsuarioDAO {
             stmt.close();
 
             return "Usuário cadastrado com sucesso!";
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw new ExcecoesCadastro("Erro de integridade: algum campo obrigatório não foi preenchido corretamente.", e);
         } catch (SQLException e) {
             throw new ExcecoesCadastro("Erro ao cadastrar usuário: " + e.getMessage(), e);
         }
+    }
+
+    // login
+    public Usuario buscarPorEmailSenha(String email, String senha) throws SQLException {
+        Usuario usuario = null;
+
+        String sql = "SELECT ID_USUARIO, NOME_USUARIO, EMAIL_USUARIO, SENHA_USUARIO, CPF " +
+                "FROM GS_USUARIO WHERE EMAIL_USUARIO = ? AND SENHA_USUARIO = ?";
+
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, email);
+        stmt.setString(2, senha);
+
+        ResultSet rs = stmt.executeQuery();
+
+        if (rs.next()) {
+            usuario = new Usuario();
+            usuario.setId(rs.getInt("ID_USUARIO"));
+            usuario.setNome(rs.getString("NOME_USUARIO"));
+            usuario.setEmail(rs.getString("EMAIL_USUARIO"));
+            usuario.setSenha(rs.getString("SENHA_USUARIO"));
+            usuario.setCpf(rs.getString("CPF"));
+        }
+
+        rs.close();
+        stmt.close();
+
+        return usuario;
     }
 }
