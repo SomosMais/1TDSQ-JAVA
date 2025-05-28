@@ -60,7 +60,13 @@ public class UsuarioBO {
         usuario.setEmail(email);
         usuario.setSenha(novaSenha);
 
-        return usuarioDAO.atualizar(usuario);
+        String resultado = usuarioDAO.atualizar(usuario);
+
+        if (resultado.equals("Nenhum usuário foi atualizado!")) {
+            throw new RuntimeException("Usuário não encontrado para o e-mail informado.");
+        }
+
+        return resultado;
     }
 
 }
