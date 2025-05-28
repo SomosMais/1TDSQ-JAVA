@@ -2,6 +2,7 @@ package br.com.fiap.beans;
 
 public class Endereco {
 
+    // visibility, data type and attributes
     private String id;
     private String logradouro;
     private String numero;
@@ -10,10 +11,12 @@ public class Endereco {
     private String cidade;
     private String estado;
 
+    // constructor empty with superclass
     public Endereco() {
         super();
     }
 
+    // full constructor with superclass
     public Endereco(String id, String logradouro, String numero, String cep, String bairro, String cidade, String estado) {
         super();
         this.id = id;
@@ -25,6 +28,7 @@ public class Endereco {
         this.estado = estado;
     }
 
+    // getters (return) and setters (entries)
     public String getId() {
         return id;
     }
@@ -81,6 +85,7 @@ public class Endereco {
         this.estado = estado;
     }
 
+    // toString
     @Override
     public String toString() {
         return "=== Informações de Endereco ===" +
