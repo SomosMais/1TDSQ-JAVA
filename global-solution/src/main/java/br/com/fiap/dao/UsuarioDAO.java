@@ -90,5 +90,6 @@ public class UsuarioDAO {
         return linhasAfetadas > 0 ? "Usuário atualizado com sucesso!" : "Nenhum usuário foi atualizado!";
     }
 
+    // add cadastro com dados de parente (endereco e celular) + endereço com o viacep
 
 }
