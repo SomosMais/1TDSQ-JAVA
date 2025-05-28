@@ -3,11 +3,10 @@ package br.com.fiap;
 import br.com.fiap.beans.Usuario;
 import br.com.fiap.bo.UsuarioBO;
 import br.com.fiap.excecoes.ExcecoesCadastro;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import br.com.fiap.excecoes.ExcecoesUsuarioNaoEncontrado;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import java.sql.SQLException;
 
@@ -43,6 +42,25 @@ public class UsuarioResource {
             return usuarioBO.login(usuario.getEmail(), usuario.getSenha());
         } catch (IllegalArgumentException | SQLException e) {
             return new Usuario();
+        } catch (ExcecoesCadastro e) {
+            throw new RuntimeException(e);
+        } catch (ExcecoesUsuarioNaoEncontrado e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @PUT
+    @Path("/atualizar-senha")
+    public Response atualizarSenha(DadosSenha dados) {
+
+        try {
+            usuarioBO.atualizarSenha(dados.getEmail(), dados.getNovaSenha());
+            return Response.ok("Senha atualizada com sucesso!").build();
+        } catch (RuntimeException e) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage()).build();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } catch (ExcecoesCadastro e) {
             throw new RuntimeException(e);
         }

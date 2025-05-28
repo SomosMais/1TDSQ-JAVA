@@ -70,4 +70,22 @@ public class UsuarioDAO {
             throw new ExcecoesCadastro("Erro ao fazer login: " + e.getMessage(), e);
         }
     }
+
+    // update password
+    public String atualizar(Usuario usuario) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "UPDATE GS_USUARIO SET SENHA_USUARIO = ? WHERE EMAIL_USUARIO = ?"
+        );
+
+        stmt.setString(1, usuario.getSenha());
+        stmt.setString(2, usuario.getEmail());
+
+
+        int linhasAfetadas = stmt.executeUpdate();
+        stmt.close();
+
+        return linhasAfetadas > 0 ? "Usuário atualizado com sucesso!" : "Nenhum usuário foi atualizado!";
+    }
+
+
 }
