@@ -1,6 +1,7 @@
 package br.com.fiap.bo;
 
 import br.com.fiap.beans.Empresa;
+import br.com.fiap.beans.Usuario;
 import br.com.fiap.dao.EmpresaDAO;
 import br.com.fiap.excecoes.ExcecoesCadastro;
 
@@ -12,6 +13,10 @@ public class EmpresaBO {
 
     public EmpresaBO() throws SQLException, ClassNotFoundException {
         this.empresaDAO = new EmpresaDAO();
+    }
+
+    public EmpresaBO(EmpresaDAO empresaDAO) {
+        this.empresaDAO = empresaDAO;
     }
 
     // regras de negócio para cadastro de empresa
@@ -45,6 +50,28 @@ public class EmpresaBO {
         }
 
         return empresa;
+    }
+
+    public String atualizarSenha(String email, String novaSenha) throws ExcecoesCadastro, SQLException {
+        if (email == null || email.isEmpty()) {
+            throw new ExcecoesCadastro("O campo e-mail é obrigatório.");
+        }
+
+        if (novaSenha == null || novaSenha.isEmpty()) {
+            throw new ExcecoesCadastro("O campo senha é obrigatório.");
+        }
+
+        Empresa empresa = new Empresa();
+        empresa.setEmail(email);
+        empresa.setSenha(novaSenha);
+
+        String resultado = empresaDAO.atualizar(empresa);
+
+        if (resultado.equals("Nenhum usuário foi atualizado!")) {
+            throw new RuntimeException("Empresa não encontrada para o e-mail informado.");
+        }
+
+        return resultado;
     }
 
 }

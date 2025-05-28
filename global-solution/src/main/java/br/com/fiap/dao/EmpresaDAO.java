@@ -1,6 +1,7 @@
 package br.com.fiap.dao;
 
 import br.com.fiap.beans.Empresa;
+import br.com.fiap.beans.Usuario;
 import br.com.fiap.conexao.ConnectionFactory;
 import br.com.fiap.excecoes.ExcecoesCadastro;
 
@@ -28,6 +29,7 @@ public class EmpresaDAO {
 
             stmt.execute();
             stmt.close();
+            connection.close();
 
             return "Empresa cadastrada com sucesso!";
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -61,6 +63,7 @@ public class EmpresaDAO {
 
             rs.close();
             stmt.close();
+            connection.close();
 
             return empresa;
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -68,5 +71,21 @@ public class EmpresaDAO {
         } catch (SQLException e) {
             throw new ExcecoesCadastro("Erro ao fazer login: " + e.getMessage(), e);
         }
+    }
+
+    public String atualizar(Empresa empresa) throws SQLException {
+        PreparedStatement stmt = connection.prepareStatement(
+                "UPDATE GS_EMPRESA SET SENHA_EMPRESA = ? WHERE EMAIL_EMPRESA = ?"
+        );
+
+        stmt.setString(1, empresa.getSenha());
+        stmt.setString(2, empresa.getEmail());
+
+
+        int linhasAfetadas = stmt.executeUpdate();
+        stmt.close();
+        connection.close();
+
+        return linhasAfetadas > 0 ? "Empresa atualizada com sucesso!" : "Nenhuma empresa foi atualizada!";
     }
 }
