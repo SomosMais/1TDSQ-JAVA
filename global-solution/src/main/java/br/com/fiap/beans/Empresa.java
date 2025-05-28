@@ -1,27 +1,27 @@
 package br.com.fiap.beans;
 
-public class Usuario {
+public class Empresa {
 
     // visibility, data type and attributes
     private int id;
     private String nome;
     private String email;
     private String senha;
-    private String cpf;
+    private String cnpj;
 
-    // constructor empty with super class
-    public Usuario() {
+    // constructor empty with superclass
+    public Empresa() {
         super();
     }
 
-    // full constructor with super class
-    public Usuario(int id, String nome, String email, String senha, String cpf) {
+    // full constructor with superclass
+    public Empresa(int id, String nome, String email, String senha, String cnpj) {
         super();
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
-        this.cpf = cpf;
+        this.cnpj = cnpj;
     }
 
     // getters (return) and setters (entries)
@@ -57,22 +57,22 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 
     // toString
     @Override
     public String toString() {
-        return "=== Informações do usuário ===" +
+        return "=== Informações da Empresa ===" +
                 "\nid: " + id +
                 "\nnome: " + nome +
                 "\nemail: " + email +
                 "\nsenha: " + senha +
-                "\ncpf: " + cpf;
+                "\ncnpj: " + cnpj;
     }
 }
