@@ -1,5 +1,6 @@
 package br.com.fiap;
 
+import br.com.fiap.beans.DadosSenha;
 import br.com.fiap.beans.Usuario;
 import br.com.fiap.bo.UsuarioBO;
 import br.com.fiap.excecoes.ExcecoesCadastro;
