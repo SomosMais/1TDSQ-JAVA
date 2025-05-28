@@ -33,7 +33,7 @@ public class UsuarioBO {
     }
 
     // regras de negócio para login de usuário
-    public Usuario login(String email, String senha) throws SQLException {
+    public Usuario login(String email, String senha) throws SQLException, ExcecoesCadastro {
         if (email == null || email.isEmpty() || senha == null || senha.isEmpty()) {
             throw new IllegalArgumentException("Email e senha são obrigatórios.");
         }

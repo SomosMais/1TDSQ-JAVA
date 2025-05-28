@@ -2,6 +2,7 @@ package br.com.fiap.main;
 
 import br.com.fiap.beans.Usuario;
 import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.excecoes.ExcecoesCadastro;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class TesteSelecionarUsuario {
         return JOptionPane.showInputDialog(j);
     }
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, ExcecoesCadastro {
 
         // Instanciar DAO
         UsuarioDAO objUsuarioDao = new UsuarioDAO();

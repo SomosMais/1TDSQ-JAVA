@@ -20,7 +20,6 @@ public class UsuarioResource {
         this.usuarioBO = new UsuarioBO();
     }
 
-    // ✅ Cadastro
     @POST
     @Path("/cadastrar")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -35,7 +34,6 @@ public class UsuarioResource {
         }
     }
 
-    // 🔐 Login
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -44,8 +42,9 @@ public class UsuarioResource {
         try {
             return usuarioBO.login(usuario.getEmail(), usuario.getSenha());
         } catch (IllegalArgumentException | SQLException e) {
-
             return new Usuario();
+        } catch (ExcecoesCadastro e) {
+            throw new RuntimeException(e);
         }
     }
 }

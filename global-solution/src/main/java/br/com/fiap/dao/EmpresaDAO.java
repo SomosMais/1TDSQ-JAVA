@@ -41,11 +41,11 @@ public class EmpresaDAO {
     }
 
     // login
-    public Empresa buscarPorEmailSenha(String email, String senha) {
-        Empresa empresa = null;
-
-
-
-    }
+//    public Empresa buscarPorEmailSenha(String email, String senha) {
+//        Empresa empresa = null;
+//
+//
+//
+//    }
 
 }
