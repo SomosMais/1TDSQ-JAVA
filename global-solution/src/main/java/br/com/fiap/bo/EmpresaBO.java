@@ -33,5 +33,18 @@ public class EmpresaBO {
     }
 
     // regras de negócio para login de empresa
+    public Empresa login(String email, String senha) throws ExcecoesCadastro {
+        if (email == null || email.isEmpty() || senha == null || senha.isEmpty()) {
+            throw new IllegalArgumentException("Email e senha são obrigatórios.");
+        }
+
+        Empresa empresa = empresaDAO.buscarPorEmailSenha(email, senha);
+
+        if (empresa == null) {
+            throw new IllegalArgumentException("Empresa não encontrada.");
+        }
+
+        return empresa;
+    }
 
 }

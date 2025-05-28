@@ -4,10 +4,7 @@ import br.com.fiap.beans.Empresa;
 import br.com.fiap.conexao.ConnectionFactory;
 import br.com.fiap.excecoes.ExcecoesCadastro;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.*;
 
 public class EmpresaDAO {
 
@@ -41,11 +38,35 @@ public class EmpresaDAO {
     }
 
     // login
-//    public Empresa buscarPorEmailSenha(String email, String senha) {
-//        Empresa empresa = null;
-//
-//
-//
-//    }
+    public Empresa buscarPorEmailSenha(String email, String senha) throws ExcecoesCadastro {
+        Empresa empresa = null;
 
+        try {
+            String sql = "SELECT ID_EMPRESA, NOME_EMPRESA, EMAIL_EMPRESA, SENHA_EMPRESA, CNPJ FROM GS_EMPRESA WHERE EMAIL_EMPRESA = ? AND SENHA_EMPRESA = ?";
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, senha);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                empresa = new Empresa();
+                empresa.setId(rs.getInt("ID_EMPRESA"));
+                empresa.setNome(rs.getString("NOME_EMPRESA"));
+                empresa.setEmail(rs.getString("NOME_EMPRESA"));
+                empresa.setSenha(rs.getString("SENHA_EMPRESA"));
+                empresa.setCnpj(rs.getString("CNPJ"));
+            }
+
+            rs.close();
+            stmt.close();
+
+            return empresa;
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw new ExcecoesCadastro("Erro de integridade: algum campo não foi preenchido corretamente.", e);
+        } catch (SQLException e) {
+            throw new ExcecoesCadastro("Erro ao fazer login: " + e.getMessage(), e);
+        }
+    }
 }
