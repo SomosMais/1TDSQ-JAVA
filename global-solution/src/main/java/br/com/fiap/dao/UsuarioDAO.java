@@ -14,26 +14,58 @@ public class UsuarioDAO {
         this.connection = new ConnectionFactory().conexao();
     }
 
-    // cadastrar usuário
-    public String cadastrarUsuario(Usuario usuario) throws SQLException, ExcecoesCadastro {
-        try {
-            PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO GS_Usuario (nome_usuario, email_usuario, senha_usuario, cpf) VALUES (?, ?, ?, ?)"
-            );
+//    // cadastrar usuário
+//    public String cadastrarUsuario(Usuario usuario) throws SQLException, ExcecoesCadastro {
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(
+//                    "INSERT INTO GS_Usuario (nome_usuario, email_usuario, senha_usuario, cpf) VALUES (?, ?, ?, ?)"
+//            );
+//
+//            stmt.setString(1, usuario.getNome());
+//            stmt.setString(2, usuario.getEmail());
+//            stmt.setString(3, usuario.getSenha());
+//            stmt.setString(4, usuario.getCpf());
+//
+//            stmt.execute();
+//            stmt.close();
+//            connection.close();
+//
+//            return "Usuário cadastrado com sucesso!";
+//        } catch (SQLIntegrityConstraintViolationException e) {
+//            throw new ExcecoesCadastro("Erro de integridade: algum campo obrigatório não foi preenchido corretamente.", e);
+//        } catch (SQLException e) {
+//            throw new ExcecoesCadastro("Erro ao cadastrar usuário: " + e.getMessage(), e);
+//        }
+//    }
+
+    public String cadastrarUsuario(Usuario usuario) throws ExcecoesCadastro {
+        try (Connection connection = new ConnectionFactory().conexao();
+             PreparedStatement stmt = connection.prepareStatement(
+                     "INSERT INTO GS_Usuario (nome_usuario, email_usuario, senha_usuario, cpf, id_endereco) VALUES (?, ?, ?, ?, ?)"
+             )
+        ) {
+            // Validação simples antes do insert
+            if (usuario.getNome() == null || usuario.getEmail() == null || usuario.getSenha() == null || usuario.getCpf() == null) {
+                throw new ExcecoesCadastro("Campos obrigatórios não preenchidos");
+            }
+
+            if (usuario.getEndereco() == null || usuario.getEndereco().getId() <= 0) {
+                throw new ExcecoesCadastro("Endereço inválido. ID do endereço está ausente ou incorreto.");
+            }
 
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getEmail());
             stmt.setString(3, usuario.getSenha());
             stmt.setString(4, usuario.getCpf());
+            stmt.setInt(5, usuario.getEndereco().getId());
 
-            stmt.execute();
-            stmt.close();
-            connection.close();
+            int rows = stmt.executeUpdate();
+            System.out.println("Linhas afetadas no insert do usuário: " + rows);
 
             return "Usuário cadastrado com sucesso!";
         } catch (SQLIntegrityConstraintViolationException e) {
-            throw new ExcecoesCadastro("Erro de integridade: algum campo obrigatório não foi preenchido corretamente.", e);
-        } catch (SQLException e) {
+            throw new ExcecoesCadastro("Erro de integridade: algum campo obrigatório não foi preenchido corretamente ou já existe (CPF/email duplicado).", e);
+        } catch (SQLException | ClassNotFoundException e) {
             throw new ExcecoesCadastro("Erro ao cadastrar usuário: " + e.getMessage(), e);
         }
     }

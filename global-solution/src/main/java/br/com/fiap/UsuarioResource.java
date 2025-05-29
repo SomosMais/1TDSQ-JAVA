@@ -3,6 +3,8 @@ package br.com.fiap;
 import br.com.fiap.beans.DadosSenha;
 import br.com.fiap.beans.Usuario;
 import br.com.fiap.bo.UsuarioBO;
+import br.com.fiap.dao.EnderecoDAO;
+import br.com.fiap.dao.UsuarioDAO;
 import br.com.fiap.excecoes.ExcecoesCadastro;
 import br.com.fiap.excecoes.ExcecoesUsuarioNaoEncontrado;
 import jakarta.ws.rs.*;
@@ -20,14 +22,33 @@ public class UsuarioResource {
         this.usuarioBO = new UsuarioBO();
     }
 
+//    @POST
+//    @Path("/cadastrar")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.TEXT_PLAIN)
+//    public String cadastrar(Usuario usuario) {
+//        try {
+//            return usuarioBO.validarUsuario(usuario);
+//        } catch (SQLException e) {
+//            return "Erro no banco de dados: " + e.getMessage();
+//        } catch (ExcecoesCadastro e) {
+//            return "Erro de validação: " + e.getMessage();
+//        }
+//    }
+
     @POST
     @Path("/cadastrar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public String cadastrar(Usuario usuario) {
         try {
-            return usuarioBO.validarUsuario(usuario);
-        } catch (SQLException e) {
+            EnderecoDAO enderecoDAO = new EnderecoDAO();
+            int idEndereco = enderecoDAO.cadastrarEndereco(usuario.getEndereco());
+            usuario.getEndereco().setId(idEndereco);
+
+            UsuarioDAO dao = new UsuarioDAO();
+            return dao.cadastrarUsuario(usuario);
+        } catch (SQLException | ClassNotFoundException e) {
             return "Erro no banco de dados: " + e.getMessage();
         } catch (ExcecoesCadastro e) {
             return "Erro de validação: " + e.getMessage();
