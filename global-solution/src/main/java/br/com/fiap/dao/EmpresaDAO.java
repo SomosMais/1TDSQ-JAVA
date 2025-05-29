@@ -1,7 +1,6 @@
 package br.com.fiap.dao;
 
 import br.com.fiap.beans.Empresa;
-import br.com.fiap.beans.Usuario;
 import br.com.fiap.conexao.ConnectionFactory;
 import br.com.fiap.excecoes.ExcecoesCadastro;
 
@@ -19,7 +18,7 @@ public class EmpresaDAO {
         try {
 
             PreparedStatement stmt = connection.prepareStatement(
-                    "INSERT INTO GS_Empresa (nome_empresa, email_empresa, senha_empresa, cnpj, id_endereco) VALUES (?, ?, ?, ?, ?)"
+                    "INSERT INTO GS_Empresa (nome_empresa, email_empresa, senha_empresa, cnpj, id_endereco, id_atuacao) VALUES (?, ?, ?, ?, ?, ?)"
             );
 
             stmt.setString(1, empresa.getNome());
@@ -27,9 +26,12 @@ public class EmpresaDAO {
             stmt.setString(3, empresa.getSenha());
             stmt.setString(4, empresa.getCnpj());
             stmt.setInt(5, empresa.getEndereco().getId());
+            int idAtuacao = (int) (Math.random() * 5) + 1;
+            stmt.setInt(6, idAtuacao);
 
-            stmt.execute();
+            stmt.executeUpdate();
             stmt.close();
+            connection.close();
 
             return "Empresa cadastrada com sucesso!";
         } catch (SQLIntegrityConstraintViolationException e) {

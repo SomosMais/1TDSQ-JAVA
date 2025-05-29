@@ -50,7 +50,7 @@ public class TesteCadastrarEmpresa {
                 return;
             }
 
-            int numero = integer("Informe o número do endereço:");
+            String numero = text("Informe o número do endereço:");
 
             Endereco endereco = new Endereco(
                     0,
@@ -58,8 +58,8 @@ public class TesteCadastrarEmpresa {
                     numero,
                     enderecoViaCep.getCep(),
                     enderecoViaCep.getBairro(),
-                    enderecoViaCep.getCidade(),
-                    enderecoViaCep.getEstado()
+                    enderecoViaCep.getLocalidade(),
+                    enderecoViaCep.getUf()
             );
 
             // 🔸 Cadastrar endereço

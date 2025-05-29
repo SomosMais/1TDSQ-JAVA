@@ -3,24 +3,24 @@ package br.com.fiap.model;
 public class EnderecoModel {
 
     private String logradouro;
-    private int numero;
+    private String numero;
     private String cep;
     private String bairro;
-    private String cidade;
-    private String estado;
+    private String localidade;
+    private String uf;
 
     public EnderecoModel() {
         super();
     }
 
-    public EnderecoModel(String logradouro, int numero, String cep, String bairro, String cidade, String estado) {
+    public EnderecoModel(String logradouro, String numero, String cep, String bairro, String localidade, String uf) {
         super();
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
         this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
+        this.localidade = localidade;
+        this.uf = uf;
     }
 
     public String getLogradouro() {
@@ -31,11 +31,11 @@ public class EnderecoModel {
         this.logradouro = logradouro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -55,20 +55,20 @@ public class EnderecoModel {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCidade(String localidade) {
+        this.localidade = localidade;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getUf() {
+        return uf;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setUf(String estado) {
+        this.uf = estado;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class EnderecoModel {
                 "\nnumero: " + numero +
                 "\ncep: " + cep +
                 "\nbairro: " + bairro +
-                "\ncidade: " + cidade +
-                "\nestado: " + estado;
+                "\ncidade: " + localidade +
+                "\nestado: " + uf;
     }
 }

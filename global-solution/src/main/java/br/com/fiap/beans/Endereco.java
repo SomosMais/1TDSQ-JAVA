@@ -5,11 +5,11 @@ public class Endereco {
     // visibility, data type and attributes
     private int id;
     private String logradouro;
-    private int numero;
+    private String numero;
     private String cep;
     private String bairro;
-    private String cidade;
-    private String estado;
+    private String localidade;
+    private String uf;
 
     // constructor empty with superclass
     public Endereco() {
@@ -17,15 +17,15 @@ public class Endereco {
     }
 
     // full constructor with superclass
-    public Endereco(int id, String logradouro, int numero, String cep, String bairro, String cidade, String estado) {
+    public Endereco(int id, String logradouro, String numero, String cep, String bairro, String localidade, String uf) {
         super();
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
         this.cep = cep;
         this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
+        this.localidade = localidade;
+        this.uf = uf;
     }
 
     // getters (return) and setters (entries)
@@ -45,11 +45,11 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -69,20 +69,29 @@ public class Endereco {
         this.bairro = bairro;
     }
 
-    public String getCidade() {
-        return cidade;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setLocalidade(String cidade) {
+        this.localidade = cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String estado) {
+        this.uf = estado;
+    }
+
+    // 👉 Getters específicos para o banco
+    public String getCidade() {
+        return localidade;
     }
 
     public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
+        return uf;
     }
 
     // toString
@@ -94,8 +103,8 @@ public class Endereco {
                 "\nnumero: " + numero +
                 "\ncep: " + cep +
                 "\nbairro: " + bairro +
-                "\ncidade: " + cidade +
-                "\nestado: " + estado;
+                "\ncidade: " + localidade +
+                "\nestado: " + uf;
     }
 }
 
