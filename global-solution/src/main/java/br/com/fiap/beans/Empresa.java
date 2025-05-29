@@ -8,6 +8,7 @@ public class Empresa {
     private String email;
     private String senha;
     private String cnpj;
+    private Endereco endereco;
 
     // constructor empty with superclass
     public Empresa() {
@@ -15,13 +16,14 @@ public class Empresa {
     }
 
     // full constructor with superclass
-    public Empresa(int id, String nome, String email, String senha, String cnpj) {
+    public Empresa(int id, String nome, String email, String senha, String cnpj, Endereco endereco) {
         super();
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.cnpj = cnpj;
+        this.endereco = endereco;
     }
 
     // getters (return) and setters (entries)
@@ -65,6 +67,14 @@ public class Empresa {
         this.cnpj = cnpj;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     // toString
     @Override
     public String toString() {
@@ -73,6 +83,7 @@ public class Empresa {
                 "\nnome: " + nome +
                 "\nemail: " + email +
                 "\nsenha: " + senha +
-                "\ncnpj: " + cnpj;
+                "\ncnpj: " + cnpj +
+                "\nEndereco: " + endereco;
     }
 }

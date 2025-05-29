@@ -3,7 +3,7 @@ package br.com.fiap.model;
 public class EnderecoModel {
 
     private String logradouro;
-    private String numero;
+    private int numero;
     private String cep;
     private String bairro;
     private String cidade;
@@ -13,7 +13,7 @@ public class EnderecoModel {
         super();
     }
 
-    public EnderecoModel(String logradouro, String numero, String cep, String bairro, String cidade, String estado) {
+    public EnderecoModel(String logradouro, int numero, String cep, String bairro, String cidade, String estado) {
         super();
         this.logradouro = logradouro;
         this.numero = numero;
@@ -31,11 +31,11 @@ public class EnderecoModel {
         this.logradouro = logradouro;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 

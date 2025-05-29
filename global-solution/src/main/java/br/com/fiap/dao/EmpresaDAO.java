@@ -15,21 +15,21 @@ public class EmpresaDAO {
         this.connection = new ConnectionFactory().conexao();
     }
 
-    // cadastrar empresa
     public String cadastrarEmpresa(Empresa empresa) throws ExcecoesCadastro {
         try {
+
             PreparedStatement stmt = connection.prepareStatement(
-              "INSERT INTO GS_Empresa (nome_empresa, email_empresa, senha_empresa, cnpj) VALUES (?, ?, ?, ?)"
+                    "INSERT INTO GS_Empresa (nome_empresa, email_empresa, senha_empresa, cnpj, id_endereco) VALUES (?, ?, ?, ?, ?)"
             );
 
             stmt.setString(1, empresa.getNome());
             stmt.setString(2, empresa.getEmail());
             stmt.setString(3, empresa.getSenha());
             stmt.setString(4, empresa.getCnpj());
+            stmt.setInt(5, empresa.getEndereco().getId());
 
             stmt.execute();
             stmt.close();
-            connection.close();
 
             return "Empresa cadastrada com sucesso!";
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -56,14 +56,13 @@ public class EmpresaDAO {
                 empresa = new Empresa();
                 empresa.setId(rs.getInt("ID_EMPRESA"));
                 empresa.setNome(rs.getString("NOME_EMPRESA"));
-                empresa.setEmail(rs.getString("NOME_EMPRESA"));
+                empresa.setEmail(rs.getString("EMAIL_EMPRESA"));
                 empresa.setSenha(rs.getString("SENHA_EMPRESA"));
                 empresa.setCnpj(rs.getString("CNPJ"));
             }
 
             rs.close();
             stmt.close();
-            connection.close();
 
             return empresa;
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -84,7 +83,6 @@ public class EmpresaDAO {
 
         int linhasAfetadas = stmt.executeUpdate();
         stmt.close();
-        connection.close();
 
         return linhasAfetadas > 0 ? "Empresa atualizada com sucesso!" : "Nenhuma empresa foi atualizada!";
     }

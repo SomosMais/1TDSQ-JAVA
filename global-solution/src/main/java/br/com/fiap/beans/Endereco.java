@@ -3,9 +3,9 @@ package br.com.fiap.beans;
 public class Endereco {
 
     // visibility, data type and attributes
-    private String id;
+    private int id;
     private String logradouro;
-    private String numero;
+    private int numero;
     private String cep;
     private String bairro;
     private String cidade;
@@ -17,7 +17,7 @@ public class Endereco {
     }
 
     // full constructor with superclass
-    public Endereco(String id, String logradouro, String numero, String cep, String bairro, String cidade, String estado) {
+    public Endereco(int id, String logradouro, int numero, String cep, String bairro, String cidade, String estado) {
         super();
         this.id = id;
         this.logradouro = logradouro;
@@ -29,11 +29,11 @@ public class Endereco {
     }
 
     // getters (return) and setters (entries)
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -45,11 +45,11 @@ public class Endereco {
         this.logradouro = logradouro;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 
