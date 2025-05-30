@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="643b81d7-aff3-46a5-bc05-3e7d89f5c31c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.render.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +47,7 @@
       <option name="presentableId" value="Default" />
       <updated>1748279324600</updated>
       <workItem from="1748279326012" duration="59000" />
-      <workItem from="1748624660754" duration="21000" />
+      <workItem from="1748624660754" duration="262000" />
     </task>
     <servers />
   </component>
