@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: global-solution
+    env: java
+    buildCommand: cd global-solution && ./mvnw package -DskipTests
+    startCommand: java -jar global-solution/target/global-solution-1.0.0-SNAPSHOT.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: "17"
