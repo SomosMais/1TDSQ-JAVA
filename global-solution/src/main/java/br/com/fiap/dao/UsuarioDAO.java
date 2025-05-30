@@ -95,7 +95,6 @@ public class UsuarioDAO {
 
             rs.close();
             stmt.close();
-            connection.close();
 
             return usuario;
         } catch (SQLIntegrityConstraintViolationException e) {
@@ -117,7 +116,6 @@ public class UsuarioDAO {
 
         int linhasAfetadas = stmt.executeUpdate();
         stmt.close();
-        connection.close();
 
         return linhasAfetadas > 0 ? "Usuário atualizado com sucesso!" : "Nenhum usuário foi atualizado!";
     }
