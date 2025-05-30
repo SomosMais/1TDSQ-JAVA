@@ -50,4 +50,4 @@ Esse projeto foi desenvolvido com o objetivo de ajudar pessoas em situações de
 
 ---
 
--- &copy Todos os direitos reservados.
+# &copy; Todos os direitos reservados.
