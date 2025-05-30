@@ -30,3 +30,10 @@ Esse projeto foi desenvolvido com o objetivo de ajudar pessoas em situações de
 | PUT    | `/usuario/atualizar-senha`                 | Atualiza a senha de um usuário a partir do e-mail.              |
 | PUT    | `/empresa/atualizar-senha`                 | Atualiza a senha de uma empresa a partir do e-mail.             |
 | GET    | `/endereco/buscar/{cep}`                   | Busca o endereço a partir do CEP informado pelo usuário.        |
+
+---
+
+## 🚀 Como Rodar o Projeto
+
+# Clone o repositório:
+- 
