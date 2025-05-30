@@ -36,4 +36,18 @@ Esse projeto foi desenvolvido com o objetivo de ajudar pessoas em situações de
 ## 🚀 Como Rodar o Projeto
 
 # Clone o repositório:
-- 
+- https://github.com/SomosMais/1TDSQ-JAVA.git.
+- Abra o repositório clonado na sua IDE (Eclipse ou Intellij) e certifique-se que tenha o plugin "Quarkus Tools" instalado na sua IDE.
+- Rode o projeto.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+- Java
+- Quarkus
+- Maven
+- API ViaCEP (para busca de endereços)
+
+---
+
+-- &copy Todos os direitos reservados.
