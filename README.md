@@ -52,11 +52,11 @@ Esse projeto foi desenvolvido com o objetivo de ajudar pessoas em situações de
 
 ## 👥 Desenvolvedores
 
-| Nome             | GitHub                                           | LinkedIn                                                  | Função                  |
-|------------------|--------------------------------------------------|-----------------------------------------------------------|-------------------------|
-| Pedro Sena       | https://github.com/devpedrosena1                 | https://www.linkedin.com/in/pedro-henrique-sena/          | Desenvolvedor           |
-| Matheus Henrique | https://github.com/MatheusHenriqueNF             | https://www.linkedin.com/in/matheus-henrique-freitas/     | Desenvolvedor           |
-| Cleyton Oliveira | https://github.com/Cleytonrik99                  | https://www.linkedin.com/in/cleyton-enrike-de-oliveira99/ | Desenvolvedor           |
+| Nome                | GitHub                                           | LinkedIn                                                  | Função                  |
+|---------------------|--------------------------------------------------|-----------------------------------------------------------|-------------------------|
+| Pedro Henrique Sena | https://github.com/devpedrosena1                 | https://www.linkedin.com/in/pedro-henrique-sena/          | Desenvolvedor           |
+| Matheus Henrique    | https://github.com/MatheusHenriqueNF             | https://www.linkedin.com/in/matheus-henrique-freitas/     | Desenvolvedor           |
+| Cleyton de Oliveira | https://github.com/Cleytonrik99                  | https://www.linkedin.com/in/cleyton-enrike-de-oliveira99/ | Desenvolvedor           |
 
 ---
 
