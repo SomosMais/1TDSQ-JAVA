@@ -69,13 +69,18 @@ public class EmpresaResource {
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Empresa login(Empresa empresa) {
+    public Response login(Empresa empresa) {
         try {
-            return empresaBO.login(empresa.getEmail(), empresa.getSenha());
+            Empresa resultado = empresaBO.login(empresa.getEmail(), empresa.getSenha());
+            return Response.ok(resultado).build();
         } catch (IllegalArgumentException e) {
-            return new Empresa();
+            return Response.status(Response.Status.UNAUTHORIZED)
+                    .entity("{\"erro\": \"" + e.getMessage() + "\"}")
+                    .build();
         } catch (ExcecoesCadastro e) {
-            throw new RuntimeException(e);
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity("{\"erro\": \"" + e.getMessage() + "\"}")
+                    .build();
         }
     }
 

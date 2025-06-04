@@ -31,7 +31,6 @@ public class EmpresaDAO {
 
             stmt.executeUpdate();
             stmt.close();
-            connection.close();
 
             return "Empresa cadastrada com sucesso!";
         } catch (SQLIntegrityConstraintViolationException e) {
