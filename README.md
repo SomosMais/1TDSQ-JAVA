@@ -4,6 +4,11 @@ Esse projeto foi desenvolvido com o objetivo de ajudar pessoas em situações de
 
 ---
 
+## PROJETO FINALIZADO (URL VERCEL)
+- https://1-tdsq-front-comum-t5ae.vercel.app/
+
+---
+
 ## Funcionalidades (Usuário)
 - Cadastro de pedido de ajuda;
 - Visualizar ONGs disponíveis;
