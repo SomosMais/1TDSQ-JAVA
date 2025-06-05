@@ -6,7 +6,7 @@ Esse projeto foi desenvolvido com o objetivo de ajudar pessoas em situações de
 
 ## PROJETO FINALIZADO (URL VERCEL)
 - https://1-tdsq-front-comum-t5ae.vercel.app/
-- https://1-tdsq-front-empresa-ckak.vercel.app/pages/Dashboard
+- https://1-tdsq-front-empresa-ckak.vercel.app/
 
 ---
 
